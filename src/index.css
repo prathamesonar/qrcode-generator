@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg-color: #000000;
+  --surface-color: #0a0a0a;
+  --surface-hover: #111111;
+  --border-color: #222222;
+  --text-primary: #ffffff;
+  --text-secondary: #888888;
+  --accent-color: #D4FF00; /* Neon Lime */
+  --accent-hover: #BBE600;
+}
+
+:root[data-theme="light"] {
+  --bg-color: #f9fafb;
+  --surface-color: #ffffff;
+  --surface-hover: #f3f4f6;
+  --border-color: #e5e7eb;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --accent-color: #D4FF00;
+  --accent-hover: #BBE600;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Typography */
+.hero-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.hero-subtitle {
+  font-size: clamp(1.125rem, 2vw, 1.5rem);
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 3rem;
+  line-height: 1.5;
+}
+
+/* Elements */
+.header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 64px;
+}
+
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: -0.02em;
+}
+
+.logo-icon {
+  background: var(--text-primary);
+  color: var(--bg-color);
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.btn-primary {
+  background-color: var(--accent-color);
+  color: #000000;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 100px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.125rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 12px 24px;
+  border-radius: 100px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background-color: var(--surface-hover);
+  border-color: var(--text-primary);
+}
+
+/* Form Area */
+.generator-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+  .generator-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+.input-wrapper {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.huge-input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--border-color);
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  padding: 16px 0;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s ease;
+  outline: none;
+}
+
+.huge-input:focus {
+  border-color: var(--accent-color);
+}
+
+.huge-input::placeholder {
+  color: #444444;
+}
+
+.preview-box {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.preview-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+  opacity: 0.5;
+}
+
+.qr-image-wrapper {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 32px;
+}
+
+.qr-image-wrapper img {
+  width: 240px;
+  height: 240px;
+  display: block;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+/* History */
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+  margin-top: 64px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 48px;
+}
+
+.history-item {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  border-radius: 16px;
+  text-align: center;
+  transition: border-color 0.2s ease;
+}
+
+.history-item:hover {
+  border-color: var(--text-secondary);
+}
+
+.history-item img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background: white;
+}
+
+.history-item p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 120px;
+  padding: 48px 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.developer-info {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.info-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.info-badge span {
+  color: var(--text-primary);
+  font-weight: 500;
+  font-family: 'Space Grotesk', sans-serif;
+}
