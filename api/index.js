@@ -11,12 +11,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Connect to MongoDB
-if (process.env.MONGODB_URI) {
-  mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch((err) => console.error('MongoDB connection error:', err));
-}
+let isConnected = false;
+
+const connectDB = async () => {
+  if (isConnected || !process.env.MONGODB_URI) {
+    return;
+  }
+  try {
+    const db = await mongoose.connect(process.env.MONGODB_URI);
+    isConnected = db.connections[0].readyState === 1;
+  } catch (error) {
+    console.error('MongoDB connection error:', error);
+  }
+};
 
 app.post('/api/generate', async (req, res) => {
   try {
@@ -36,8 +43,9 @@ app.post('/api/generate', async (req, res) => {
     });
 
     // Save to DB if connected
+    await connectDB();
     let savedRecord = null;
-    if (mongoose.connection.readyState === 1) {
+    if (isConnected) {
       savedRecord = await QRCodeModel.create({ text, imageUrl });
     }
 
@@ -50,7 +58,8 @@ app.post('/api/generate', async (req, res) => {
 
 app.get('/api/history', async (req, res) => {
   try {
-    if (mongoose.connection.readyState !== 1) {
+    await connectDB();
+    if (!isConnected) {
       return res.json([]);
     }
     const history = await QRCodeModel.find().sort({ createdAt: -1 }).limit(20);
