@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { QrCode, Download, ExternalLink, ArrowRight, Loader2, User, Mail, Sun, Moon } from 'lucide-react';
+import { QrCode, Download, ArrowRight, Loader2, User, Mail, Sun, Moon } from 'lucide-react';
 import axios from 'axios';
 import './index.css';
 
@@ -88,14 +88,6 @@ function App() {
           >
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
           </button>
-          <a 
-            href="https://digitalheroesco.com" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            className="btn-secondary"
-          >
-            Built for Digital Heroes <ExternalLink size={14} />
-          </a>
         </div>
       </header>
 
